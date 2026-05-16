@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+const fs = require('fs');
+
+const homepage = `import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Zap, CheckCircle, Wrench, Droplets, Plug, Paintbrush, TreePine, Wind, Hammer, Scissors, Layers, Home, MapPin, Clock, Shield, Star, TrendingUp, Lock } from 'lucide-react';
@@ -145,7 +147,7 @@ export default function HomePage() {
                     style={{ background: 'rgba(0,229,229,0.08)', color: 'var(--cyan)', borderColor: 'rgba(0,229,229,0.2)' }}>
                     {job.trade}
                   </span>
-                  <span className={`text-xs font-medium px-2.5 py-1 rounded-lg border ${URGENCY[job.urgency]}`}>
+                  <span className={\`text-xs font-medium px-2.5 py-1 rounded-lg border \${URGENCY[job.urgency]}\`}>
                     {job.urgency}
                   </span>
                 </div>
@@ -179,12 +181,12 @@ export default function HomePage() {
             <h2 className="text-4xl font-black text-white mb-6">Simple for everyone</h2>
             <div className="inline-flex rounded-xl p-1 gap-1" style={{ background: 'var(--surface-3)' }}>
               <button onClick={() => setTab('client')}
-                className={`px-6 py-2.5 rounded-lg text-sm font-semibold transition-all ${tab === 'client' ? 'text-surface-1' : 'text-white/50 hover:text-white'}`}
+                className={\`px-6 py-2.5 rounded-lg text-sm font-semibold transition-all \${tab === 'client' ? 'text-surface-1' : 'text-white/50 hover:text-white'}\`}
                 style={{ background: tab === 'client' ? 'var(--cyan)' : 'transparent' }}>
                 I need a tradie
               </button>
               <button onClick={() => setTab('pro')}
-                className={`px-6 py-2.5 rounded-lg text-sm font-semibold transition-all ${tab === 'pro' ? 'text-surface-1' : 'text-white/50 hover:text-white'}`}
+                className={\`px-6 py-2.5 rounded-lg text-sm font-semibold transition-all \${tab === 'pro' ? 'text-surface-1' : 'text-white/50 hover:text-white'}\`}
                 style={{ background: tab === 'pro' ? 'var(--cyan)' : 'transparent' }}>
                 I am a tradesperson
               </button>
@@ -332,3 +334,7 @@ export default function HomePage() {
     </div>
   );
 }
+`;
+
+fs.writeFileSync('src/pages/HomePage.jsx', homepage);
+console.log('Written:', fs.statSync('src/pages/HomePage.jsx').size, 'bytes');
