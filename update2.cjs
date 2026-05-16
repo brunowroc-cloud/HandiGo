@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+const fs = require('fs');
+
+const homepage = `import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Zap, CheckCircle, Wrench, Droplets, Plug, Paintbrush, TreePine, Wind, Hammer, Scissors, Layers, Home, MapPin, Clock, Shield, Star, TrendingUp, Lock, ChevronRight } from 'lucide-react';
@@ -19,12 +21,12 @@ const TRADES = [
 ];
 
 const SAMPLE_JOBS = [
-  { trade: 'Roofing', title: 'Roof leak repair — water coming through ceiling', location: 'Auckland', urgency: 'Emergency', time: '2h ago', budget: 'NZ$800–1,500' },
-  { trade: 'Plumbing', title: 'Hot water cylinder replacement needed', location: 'Wellington', urgency: 'Within a week', time: '4h ago', budget: 'NZ$1,200–2,000' },
-  { trade: 'Electrical', title: 'Switchboard upgrade — 3 bedroom house', location: 'Christchurch', urgency: 'Within a month', time: '6h ago', budget: 'NZ$2,500+' },
-  { trade: 'Painting', title: 'Full interior repaint — 4 bedroom home', location: 'Hamilton', urgency: 'Planning ahead', time: '8h ago', budget: 'NZ$3,000–5,000' },
-  { trade: 'Landscaping', title: 'Garden redesign and new lawn installation', location: 'Tauranga', urgency: 'Within a month', time: '10h ago', budget: 'NZ$4,000–8,000' },
-  { trade: 'Renovation', title: 'Kitchen reno — open plan, new cabinets', location: 'Dunedin', urgency: 'Planning ahead', time: '12h ago', budget: 'NZ$15,000+' },
+  { trade: 'Roofing', title: 'Roof leak repair — water coming through ceiling', location: 'Auckland', urgency: 'Emergency', time: '2h ago', budget: 'NZ\$800–1,500' },
+  { trade: 'Plumbing', title: 'Hot water cylinder replacement needed', location: 'Wellington', urgency: 'Within a week', time: '4h ago', budget: 'NZ\$1,200–2,000' },
+  { trade: 'Electrical', title: 'Switchboard upgrade — 3 bedroom house', location: 'Christchurch', urgency: 'Within a month', time: '6h ago', budget: 'NZ\$2,500+' },
+  { trade: 'Painting', title: 'Full interior repaint — 4 bedroom home', location: 'Hamilton', urgency: 'Planning ahead', time: '8h ago', budget: 'NZ\$3,000–5,000' },
+  { trade: 'Landscaping', title: 'Garden redesign and new lawn installation', location: 'Tauranga', urgency: 'Within a month', time: '10h ago', budget: 'NZ\$4,000–8,000' },
+  { trade: 'Renovation', title: 'Kitchen reno — open plan, new cabinets', location: 'Dunedin', urgency: 'Planning ahead', time: '12h ago', budget: 'NZ\$15,000+' },
 ];
 
 const URGENCY_STYLE = {
@@ -146,7 +148,7 @@ export default function HomePage() {
                     style={{ background: 'rgba(0,229,229,0.08)', color: 'var(--cyan)', borderColor: 'rgba(0,229,229,0.2)' }}>
                     {job.trade}
                   </span>
-                  <span className={`text-xs font-medium px-2.5 py-1 rounded-lg border ${URGENCY_STYLE[job.urgency]}`}>
+                  <span className={\`text-xs font-medium px-2.5 py-1 rounded-lg border \${URGENCY_STYLE[job.urgency]}\`}>
                     {job.urgency}
                   </span>
                 </div>
@@ -186,12 +188,12 @@ export default function HomePage() {
             <h2 className="text-4xl font-black text-white mb-8">Simple for everyone</h2>
             <div className="inline-flex rounded-xl p-1 gap-1" style={{ background: 'var(--surface-3)' }}>
               <button onClick={() => setTab('client')}
-                className={`px-6 py-2.5 rounded-lg text-sm font-semibold transition-all ${tab === 'client' ? 'text-surface-1' : 'text-white/50 hover:text-white'}`}
+                className={\`px-6 py-2.5 rounded-lg text-sm font-semibold transition-all \${tab === 'client' ? 'text-surface-1' : 'text-white/50 hover:text-white'}\`}
                 style={{ background: tab === 'client' ? 'var(--cyan)' : 'transparent' }}>
                 I need a tradie
               </button>
               <button onClick={() => setTab('pro')}
-                className={`px-6 py-2.5 rounded-lg text-sm font-semibold transition-all ${tab === 'pro' ? 'text-surface-1' : 'text-white/50 hover:text-white'}`}
+                className={\`px-6 py-2.5 rounded-lg text-sm font-semibold transition-all \${tab === 'pro' ? 'text-surface-1' : 'text-white/50 hover:text-white'}\`}
                 style={{ background: tab === 'pro' ? 'var(--cyan)' : 'transparent' }}>
                 I am a tradesperson
               </button>
@@ -360,3 +362,7 @@ export default function HomePage() {
     </div>
   );
 }
+`;
+
+fs.writeFileSync('src/pages/HomePage.jsx', homepage);
+console.log('Written:', fs.statSync('src/pages/HomePage.jsx').size, 'bytes');
