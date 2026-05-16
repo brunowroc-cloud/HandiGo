@@ -1,4 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+const fs = require('fs');
+
+const header = `import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Wrench, Menu, X, LogOut, LayoutDashboard, ChevronDown, Wallet, Settings, UserX } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext.jsx';
@@ -106,7 +108,7 @@ export default function Header() {
                   <span className="text-sm text-white/80 hidden lg:block max-w-[120px] truncate font-medium">
                     {displayName}
                   </span>
-                  <ChevronDown size={14} className={`text-white/40 transition-transform ${dropOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown size={14} className={\`text-white/40 transition-transform \${dropOpen ? 'rotate-180' : ''}\`} />
                 </button>
 
                 {dropOpen && (
@@ -234,3 +236,7 @@ export default function Header() {
     </header>
   );
 }
+`;
+
+fs.writeFileSync('src/components/Header.jsx', header);
+console.log('Header written:', fs.statSync('src/components/Header.jsx').size, 'bytes');

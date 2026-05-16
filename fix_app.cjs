@@ -1,4 +1,6 @@
-import React from 'react';
+const fs = require('fs');
+
+const app = `import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
@@ -36,3 +38,7 @@ export default function App() {
     </Router>
   );
 }
+`;
+
+fs.writeFileSync('src/App.jsx', app);
+console.log('App.jsx written:', fs.statSync('src/App.jsx').size, 'bytes');
