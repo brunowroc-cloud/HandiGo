@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark premium palette */
+    --background: 222 25% 5%;
+    --foreground: 210 40% 96%;
+
+    --card: 222 20% 8%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 222 20% 8%;
+    --popover-foreground: 210 40% 96%;
+
+    /* Cyan/teal accent */
+    --primary: 180 100% 45%;
+    --primary-foreground: 222 25% 5%;
+
+    --secondary: 222 20% 12%;
+    --secondary-foreground: 210 40% 96%;
+
+    --muted: 222 20% 12%;
+    --muted-foreground: 215 16% 55%;
+
+    --accent: 180 100% 45%;
+    --accent-foreground: 222 25% 5%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 20% 14%;
+    --input: 222 20% 12%;
+    --ring: 180 100% 45%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --cyan: #00E5E5;
+    --cyan-dim: #00B8B8;
+    --cyan-glow: rgba(0, 229, 229, 0.15);
+    --cyan-glow-strong: rgba(0, 229, 229, 0.3);
+    --surface-1: #0D1117;
+    --surface-2: #161B22;
+    --surface-3: #1C2333;
+    --surface-4: #21262D;
+    --border-subtle: rgba(255,255,255,0.06);
+    --border-medium: rgba(255,255,255,0.1);
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+
+  html {
+    @apply scroll-smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--surface-1);
+  }
+
+  h1, h2, h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  /* Glass card */
+  .glass {
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .glass-md {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-medium);
+  }
+
+  /* Cyan glow button */
+  .btn-cyan {
+    background: var(--cyan);
+    color: var(--surface-1);
+    font-weight: 700;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 20px var(--cyan-glow), 0 0 60px var(--cyan-glow);
+  }
+  .btn-cyan:hover {
+    background: var(--cyan-dim);
+    box-shadow: 0 0 30px var(--cyan-glow-strong), 0 0 80px var(--cyan-glow);
+    transform: translateY(-1px);
+  }
+
+  /* Cyan outline button */
+  .btn-outline-cyan {
+    background: transparent;
+    color: var(--cyan);
+    border: 1px solid rgba(0,229,229,0.4);
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  .btn-outline-cyan:hover {
+    background: var(--cyan-glow);
+    border-color: var(--cyan);
+    box-shadow: 0 0 20px var(--cyan-glow);
+  }
+
+  /* Surface cards */
+  .surface-card {
+    background: var(--surface-2);
+    border: 1px solid var(--border-subtle);
+    border-radius: 16px;
+    transition: all 0.2s ease;
+  }
+  .surface-card:hover {
+    border-color: var(--border-medium);
+    background: var(--surface-3);
+  }
+
+  /* Cyan text */
+  .text-cyan { color: var(--cyan); }
+  .text-cyan-dim { color: var(--cyan-dim); }
+
+  /* Glow text */
+  .glow-text {
+    text-shadow: 0 0 30px var(--cyan-glow-strong);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, #fff 0%, var(--cyan) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Cyan divider */
+  .cyan-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    opacity: 0.3;
+  }
+
+  /* Badge pill */
+  .badge-cyan {
+    background: rgba(0,229,229,0.1);
+    color: var(--cyan);
+    border: 1px solid rgba(0,229,229,0.2);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* Input dark */
+  .input-dark {
+    background: var(--surface-3);
+    border: 1px solid var(--border-subtle);
+    color: #fff;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+  }
+  .input-dark:focus {
+    border-color: var(--cyan);
+    box-shadow: 0 0 0 3px var(--cyan-glow);
+    outline: none;
+  }
+  .input-dark::placeholder { color: rgba(255,255,255,0.25); }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--surface-1); }
+  ::-webkit-scrollbar-thumb { background: var(--surface-4); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(0,229,229,0.3); }
+
+  /* Noise texture overlay */
+  .noise::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  /* Animated gradient background */
+  .hero-gradient {
+    background: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0,229,229,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 80% 20%, rgba(0,150,200,0.08) 0%, transparent 50%),
+                var(--surface-1);
+  }
+}
+
+@layer utilities {
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-400 { animation-delay: 400ms; }
+  .animation-delay-600 { animation-delay: 600ms; }
+
+  .blur-3xl { filter: blur(64px); }
+
+  .border-subtle { border-color: var(--border-subtle); }
+  .border-medium { border-color: var(--border-medium); }
+
+  .bg-surface-1 { background-color: var(--surface-1); }
+  .bg-surface-2 { background-color: var(--surface-2); }
+  .bg-surface-3 { background-color: var(--surface-3); }
+  .bg-surface-4 { background-color: var(--surface-4); }
+}
